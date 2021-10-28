@@ -161,7 +161,7 @@ async function main(): Promise<void> {
       listRenovatePullRequests(octokit),
     )
     .then((pullRequests) =>
-      core.group(`⚖️ Selecting best pull request`, () =>
+      core.group(`💡 Selecting best pull request`, () =>
         selectBestPullRequest(octokit, pullRequests),
       ),
     )

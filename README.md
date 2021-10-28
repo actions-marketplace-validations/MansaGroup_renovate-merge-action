@@ -4,13 +4,26 @@
 
 ![License](https://img.shields.io/github/license/MansaGroup/renovate-merge-action?style=flat-square) ![GitHub Issues](https://img.shields.io/github/issues/mansagroup/renovate-merge-action?style=flat-square) ![GitHub Stars](https://img.shields.io/github/stars/MansaGroup/renovate-merge-action?style=flat-square)
 
-TODO.
+Renovate is a dependency management bot that one can use
+to have its dependencies updated automatically. It is pretty
+useful when you don't want to manage them manually, or at least,
+do not want to manage minor ones.
+
+This process is pretty simple and work perfectly, except if
+your repository contains a `CODEOWNERS` file, protecting your
+dependency files (i.e. the `package.json` or `package-lock.json`
+if you are using Node.js). In this context, Renovate will not
+be able to auto-merge its pull requests if all the checks pass,
+and its pull requests will be forgiven because you have no
+time for Renovate...
+
+This action will list all Renovate's pull requests, find the
+first one passing all the checks and merge it. **As simple as that.**
 
 ## Usage
 
 This will find the more appropriate pull request from Renovate,
-with passing statuses and checks and which have an approval
-from `renovate-approve`. **As simple like that.**
+with passing statuses and checks. **As simple as that.**
 
 > workflow.yml
 
@@ -53,6 +66,12 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
 <!-- prettier-ignore-start -->
 <!-- markdownlint-disable -->
+<table>
+  <tr>
+    <td align="center"><a href="https://jeremylvln.fr/"><img src="https://avatars.githubusercontent.com/u/6763873?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Jérémy Levilain</b></sub></a><br /><a href="https://github.com/MansaGroup/renovate-merge-action/commits?author=IamBlueSlime" title="Code">💻</a> <a href="https://github.com/MansaGroup/renovate-merge-action/commits?author=IamBlueSlime" title="Documentation">📖</a> <a href="#ideas-IamBlueSlime" title="Ideas, Planning, & Feedback">🤔</a></td>
+  </tr>
+</table>
+
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
 

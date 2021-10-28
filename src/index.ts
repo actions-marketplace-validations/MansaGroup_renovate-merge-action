@@ -141,7 +141,7 @@ async function selectBestPullRequest(
 
 async function main(): Promise<void> {
   const inputs: Inputs = {
-    githubToken: core.getInput('github-token', { required: true }),
+    githubToken: core.getInput('githubToken', { required: true }),
   };
 
   const octokit = getOctokit(inputs.githubToken, {

@@ -29,7 +29,7 @@ async function listRenovatePullRequests(
     >(opts)
     .then((issues) => issues.filter((issue) => issue.pull_request));
 
-  return Promise.all(
+  const pullRquests = await Promise.all(
     issues.map((issue) =>
       octokit.rest.pulls
         .get({
@@ -40,6 +40,14 @@ async function listRenovatePullRequests(
         .then((res) => res.data),
     ),
   );
+
+  pullRquests.forEach((pullRequest) =>
+    core.info(
+      `Found pull request ${pullRequest.number} (${pullRequest.title}).`,
+    ),
+  );
+
+  return pullRquests;
 }
 
 async function isPullRequestReady(
@@ -149,19 +157,23 @@ async function main(): Promise<void> {
   });
 
   return core
-    .group(`Listing Renovate's pull requests`, () =>
+    .group(`🔍 Listing Renovate's pull requests`, () =>
       listRenovatePullRequests(octokit),
     )
     .then((pullRequests) =>
-      core.group(`Selecting best pull request`, () =>
+      core.group(`⚖️ Selecting best pull request`, () =>
         selectBestPullRequest(octokit, pullRequests),
       ),
     )
     .then(async (pullRequest) => {
       if (!pullRequest) {
-        core.info('No pull request ready to be merged.');
+        core.info('✅ No pull request ready to be merged.');
         return;
       }
+
+      core.info(
+        `✨ Merging pull request ${pullRequest.number} (${pullRequest.title}).`,
+      );
 
       await octokit.rest.pulls.merge({
         owner: context.repo.owner,

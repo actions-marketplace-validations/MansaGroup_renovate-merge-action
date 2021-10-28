@@ -35,9 +35,9 @@ with passing statuses and checks. **As simple as that.**
 
 This GitHub action can take several inputs to configure its behaviors:
 
-| Name        | Type   | Default | Example | Description                                             |
-| ----------- | ------ | ------- | ------- | ------------------------------------------------------- |
-| githubToken | String | ø       | `xxx`   | The GitHub token used to create an authenticated client |
+| Name        | Type   | Default               | Example | Description                                             |
+| ----------- | ------ | --------------------- | ------- | ------------------------------------------------------- |
+| githubToken | String | ${{ github.context }} | `xxx`   | The GitHub token used to create an authenticated client |
 
 ## Examples
 

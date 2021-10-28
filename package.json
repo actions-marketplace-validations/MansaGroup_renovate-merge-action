@@ -1,0 +1,77 @@
+{
+  "name": "renovate-merge-action",
+  "version": "0.0.1",
+  "description": "![Banner](.github/assets/banner-thin.png)",
+  "main": "lib/index.js",
+  "scripts": {
+    "build": "tsc",
+    "lint": "eslint src",
+    "lint:fix": "eslint --fix src",
+    "package": "ncc build -m",
+    "test": "jest --passWithNoTests"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MansaGroup/renovate-merge-action.git"
+  },
+  "keywords": [
+    "actions",
+    "renovate",
+    "merge"
+  ],
+  "author": "Jérémy Levilain <jeremy.levilain@getmansa.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/MansaGroup/renovate-merge-action/issues"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged",
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
+  },
+  "commitlint": {
+    "extends": [
+      "@commitlint/config-conventional"
+    ],
+    "rules": {
+      "header-max-length": [
+        2,
+        "always",
+        85
+      ]
+    }
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx}": "eslint --fix",
+    "*.{md,yml,html,css,scss,json}": "prettier --write"
+  },
+  "homepage": "https://github.com/MansaGroup/renovate-merge-action#readme",
+  "devDependencies": {
+    "@commitlint/cli": "13.1.0",
+    "@commitlint/config-conventional": "13.1.0",
+    "@octokit/types": "^6.34.0",
+    "@typescript-eslint/eslint-plugin": "4.31.0",
+    "@typescript-eslint/parser": "4.31.0",
+    "@vercel/ncc": "0.30.0",
+    "eslint": "7.32.0",
+    "eslint-config-airbnb-base": "14.2.1",
+    "eslint-config-prettier": "8.3.0",
+    "eslint-plugin-import": "2.24.2",
+    "eslint-plugin-import-helpers": "1.1.0",
+    "eslint-plugin-jest": "24.4.0",
+    "eslint-plugin-prettier": "4.0.0",
+    "eslint-plugin-sonarjs": "0.10.0",
+    "eslint-plugin-unused-imports": "1.1.4",
+    "husky": "7.0.2",
+    "jest": "27.1.0",
+    "jest-circus": "27.1.0",
+    "lint-staged": "11.1.2",
+    "prettier": "2.3.2",
+    "typescript": "4.4.2"
+  },
+  "dependencies": {
+    "@actions/core": "1.5.0",
+    "@actions/github": "5.0.0"
+  }
+}
